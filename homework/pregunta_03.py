@@ -15,3 +15,23 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+     
+    lista = []
+    resultado = {}
+    with open("files/input/data.csv", "r") as file:
+        data = file.readlines()
+
+    for row in data:
+        row.split('\t')
+        lista.append((row[0], int(row[2])))
+        
+    lista = sorted(lista, key = lambda x: x[0])
+    
+    for key, value in lista:
+        if key not in resultado.keys():
+            resultado[key] = 0
+        resultado[key] += value
+    result = list(resultado.items())
+    return result
+
+#print(pregunta_03())

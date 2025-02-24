@@ -27,3 +27,30 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+   
+    import operator
+    lista = []
+    dic = {}
+    resultado_final = []
+    with open("files/input/data.csv", "r") as file:
+        data = file.readlines()
+    
+    for row in data:
+        row = row.strip().split('\t')
+        lista.append((row[0],int(row[1])))
+    
+    lista = sorted(lista, key = lambda x: x[1])
+    
+    for value, key in lista:
+        if key not in dic:
+            dic[key] = set([])
+        dic[key].add(value)
+    
+    for clave, valor in dic.items():
+        letras = sorted(valor)
+        resultado_final.append((clave, letras))
+        
+        
+    return resultado_final
+
+#print(pregunta_08())

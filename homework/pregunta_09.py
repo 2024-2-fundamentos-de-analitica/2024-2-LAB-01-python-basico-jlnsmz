@@ -24,3 +24,32 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    
+    
+    lista =[]
+    tuplas = []
+    resultado = {}
+    with open("files/input/data.csv", "r") as file:
+        data = file.readlines()
+    
+    for row in data:
+        row = row.strip().split('\t')            
+        aux = row[4].strip().split(',')
+        
+        for data in aux:
+            lista.append(tuple(data.split(':')))
+            
+    
+    for data in lista:
+        tuplas.append((data[0],1))
+    
+    tuplas = sorted(tuplas, key = lambda x: x[0])
+    
+    for key, value in tuplas:
+        if key not in resultado.keys():
+            resultado[key] = 0
+        resultado[key] += value
+            
+    return resultado
+            
+#print(pregunta_09())
